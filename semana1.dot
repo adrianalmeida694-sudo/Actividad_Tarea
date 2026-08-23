@@ -1,0 +1,8 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="white", margin=0.2];
+  node [shape=record, fontname="Arial", fontsize=10];
+  edge [fontname="Arial", fontsize=9];
+
+  Producto [label="{Producto| - __codigo: str\l - __nombre: str\l - __precio: float\l| + get_codigo()\l + set_codigo(codigo)\l + get_nombre()\l + set_nombre(nombre)\l + get_precio()\l + set_precio(precio)\l + calcular_precio_final()\l + mostrar_info()\l}"];
+  Cliente [label="{Cliente| - __identificacion: str\l - __nombre: str\l - __correo: str\l| + get_identificacion()\l + set_identificacion(id)\l + get_nombre()\l + set_nombre(nombre)\l + get_correo()\l + set_correo(correo)\l + mostrar_info()\l}"];
+}

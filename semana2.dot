@@ -1,0 +1,18 @@
+digraph G {
+  graph [rankdir=TB, bgcolor="white", margin=0.2, nodesep=0.35, ranksep=0.55];
+  node [shape=record, fontname="Arial", fontsize=9];
+  edge [fontname="Arial", fontsize=9];
+
+  Producto [label="{Producto| - __codigo: str\l - __nombre: str\l - __precio: float\l| + getters/setters\l + calcular_precio_final()\l}"];
+  Cliente [label="{Cliente| - __identificacion: str\l - __nombre: str\l - __correo: str\l| + getters/setters\l}"];
+  ProductoFisico [label="{ProductoFisico| - __peso_kg: float\l - __costo_envio: float\l| + calcular_precio_final()\l}"];
+  ProductoDigital [label="{ProductoDigital| - __formato: str\l - __tamano_mb: float\l| + calcular_precio_final()\l}"];
+  Pedido [label="{Pedido| - __numero: str\l - __cliente: Cliente\l - __detalles: list\l| + agregar_producto()\l + calcular_total()\l + mostrar_resumen()\l}"];
+  DetallePedido [label="{DetallePedido| - __producto: Producto\l - __cantidad: int\l| + calcular_subtotal()\l}"];
+
+  ProductoFisico -> Producto [arrowhead=empty, label="hereda"];
+  ProductoDigital -> Producto [arrowhead=empty, label="hereda"];
+  Pedido -> Cliente [arrowhead=vee, label="cliente"];
+  Pedido -> DetallePedido [dir=both, arrowtail=diamond, arrowhead=none, label="composicion 1..*"];
+  DetallePedido -> Producto [arrowhead=vee, label="producto"];
+}
