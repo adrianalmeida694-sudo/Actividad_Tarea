@@ -1,0 +1,6 @@
+Pedido: PED-001
+Cliente: Ana Perez (ana@email.com)
+Productos:
+- Laptop x1 = $865.00
+- Curso de Python x2 = $60.00
+TOTAL: $925.00
