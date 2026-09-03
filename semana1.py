@@ -1,3 +1,6 @@
+from abc import ABC, abstractmethod
+
+
 class Producto:
     """Clase base para representar un producto de la tienda."""
 
@@ -6,7 +9,7 @@ class Producto:
         self.__nombre = nombre
         self.set_precio(precio)
 
-    # Getters y setters (encapsulacion)
+    # Getters y setters: encapsulacion
     def get_codigo(self):
         return self.__codigo
 
@@ -34,8 +37,8 @@ class Producto:
         return f"{self.__codigo} - {self.__nombre}: ${self.__precio:.2f}"
 
 
-class Cliente:
-    """Representa a un cliente registrado en la tienda."""
+class Cliente(ABC):
+    """Clase abstracta comun para todos los tipos de cliente."""
 
     def __init__(self, identificacion, nombre, correo):
         self.__identificacion = identificacion
@@ -61,6 +64,11 @@ class Cliente:
         if "@" not in correo:
             raise ValueError("El correo debe contener @")
         self.__correo = correo
+
+    @abstractmethod
+    def calcularDescuento(self, subtotal):
+        """Devuelve el valor monetario del descuento para un subtotal."""
+        raise NotImplementedError
 
     def mostrar_info(self):
         return f"Cliente: {self.__nombre} ({self.__correo})"

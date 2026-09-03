@@ -56,7 +56,7 @@ class ProductoDigital(Producto):
 
 
 class DetallePedido:
-    """Elemento que forma parte de un Pedido. Se usa para demostrar composicion."""
+    """Elemento que forma parte de un Pedido; demuestra composicion."""
 
     def __init__(self, producto, cantidad):
         if not isinstance(producto, Producto):
@@ -77,11 +77,11 @@ class DetallePedido:
 
 
 class Pedido:
-    """Pedido compuesto por uno o varios DetallePedido."""
+    """Pedido compuesto por DetallePedido y asociado a un Cliente abstracto."""
 
     def __init__(self, numero, cliente):
         if not isinstance(cliente, Cliente):
-            raise TypeError("cliente debe ser una instancia de Cliente")
+            raise TypeError("cliente debe ser una instancia de una subclase de Cliente")
         self.__numero = numero
         self.__cliente = cliente
         self.__detalles = []
@@ -99,13 +99,21 @@ class Pedido:
         detalle = DetallePedido(producto, cantidad)
         self.__detalles.append(detalle)
 
-    def calcular_total(self):
+    def calcular_subtotal(self):
         return sum(detalle.calcular_subtotal() for detalle in self.__detalles)
+
+    def calcular_descuento(self):
+        # Polimorfismo: Pedido no necesita preguntar que tipo de cliente tiene.
+        return self.__cliente.calcularDescuento(self.calcular_subtotal())
+
+    def calcular_total(self):
+        return self.calcular_subtotal() - self.calcular_descuento()
 
     def mostrar_resumen(self):
         lineas = [
             f"Pedido: {self.__numero}",
             self.__cliente.mostrar_info(),
+            f"Tipo de cliente: {type(self.__cliente).__name__}",
             "Productos:"
         ]
         for detalle in self.__detalles:
@@ -114,5 +122,7 @@ class Pedido:
                 f"- {producto.get_nombre()} x{detalle.get_cantidad()} = "
                 f"${detalle.calcular_subtotal():.2f}"
             )
+        lineas.append(f"SUBTOTAL: ${self.calcular_subtotal():.2f}")
+        lineas.append(f"DESCUENTO: ${self.calcular_descuento():.2f}")
         lineas.append(f"TOTAL: ${self.calcular_total():.2f}")
         return "\n".join(lineas)
