@@ -15,6 +15,19 @@ Durante las tres semanas se implementaron progresivamente:
 - Sobrescritura del método `calcularDescuento()`.
 - Polimorfismo para calcular diferentes descuentos según el tipo real de cliente.
 
+## Objetivo
+
+Desarrollar un sistema básico de tienda en línea utilizando Python, aplicando los conceptos de Programación Orientada a Objetos estudiados durante las semanas 1, 2 y 3, como clases, objetos, encapsulación, herencia, composición, clases abstractas y polimorfismo.
+
+## Principales funcionalidades
+
+- Creación y gestión de productos físicos y digitales.
+- Creación de clientes mayoristas y minoristas.
+- Registro de productos dentro de un pedido.
+- Cálculo del subtotal del pedido.
+- Cálculo de descuentos según el tipo de cliente.
+- Cálculo del valor total a pagar.
+
 ## Semana 1
 
 Se desarrollaron las clases base del sistema, aplicando clases, objetos y encapsulación.
@@ -60,3 +73,8 @@ Para ejecutar el programa:
 
 ```bash
 python main.py
+```
+
+## Lenguaje utilizado
+
+Python
